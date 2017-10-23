@@ -36,4 +36,18 @@ describe 'All punk api' do
   it 'The id should be a type of integer' do
     expect(@jsonall["id"]).to be_a_kind_of(Integer)
   end
+
+end
+
+describe "Punk by yeast" do
+
+  before(:all) do
+    service = PunkService.new
+    @jsonyeast = service.yeast_punk_call('Wyeast 1056 - American Ale')
+
+  end
+
+  it 'The id should be a type of integer' do
+    expect(@jsonyeast["name"]).to be_a_kind_of(String)
+  end
 end

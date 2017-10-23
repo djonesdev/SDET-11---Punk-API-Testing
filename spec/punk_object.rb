@@ -22,9 +22,9 @@ require 'json'
         all[0]
     end
 
-    def abv_punk_call(abv)
-      abv = JSON.parse(self.class.get("/beers/abv_gt").body)
-      abv[0]
+    def yeast_punk_call(yeast)
+      yeast = JSON.parse(self.class.get("/beers?yeast=#{yeast}").body)
+      yeast[0]
     end
 
  end
