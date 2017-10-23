@@ -2,8 +2,14 @@ require 'httparty'
 require 'json'
 
   class PunkService
+  include HTTParty
+    attr_accessor :uri
 
-    include HTTParty
+    def initialize
+      @uri = ""
+    end
+
+
     base_uri 'api.punkapi.com/v2/'
 
     def random_punk_call
@@ -22,9 +28,26 @@ require 'json'
         all[0]
     end
 
-    def yeast_punk_call(yeast)
-      yeast = JSON.parse(self.class.get("/beers?yeast=#{yeast}").body)
-      yeast[0]
-    end
+    def option_punk_call(opt = {})
 
- end
+      if opt.empty? == false
+        num_keys = 0
+        @uri << "?"
+        opt.each do |k,v|
+          @uri << "#{k}=#{v}"
+          while num_keys < opt.keys.length - 1
+            @uri << "&"
+            num_keys += 1
+          end
+        end
+          query_resp = JSON.parse(self.class.get("/beers#{@uri}").body)
+          query_resp[0]
+      end
+    end
+end
+
+kc = PunkService.new
+
+kc.option_punk_call({"yeast" => "american", "abv_gt" => 4})
+
+puts kc.uri
