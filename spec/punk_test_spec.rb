@@ -45,6 +45,8 @@ describe 'All punk api' do
     @jsonall = service.all_punk_service(1)
   end
 
+  # tests the make sure all data types are correct accross all hashs
+
   it 'The id should be a type of integer' do
     expect(@jsonall["id"]).to be_a_kind_of(Integer)
   end
@@ -54,7 +56,27 @@ describe 'All punk api' do
   end
 
   it 'description should be a string' do
-    puts @jsonall['description'].class
+    expect(@jsonall['description']).to be_a_kind_of(String)
+  end
+
+  it 'abv should be a float' do
+    expect(@jsonall['abv']).to be_a_kind_of(Float)
+  end
+
+  it 'Volume value should be a type of integer' do
+    expect(@jsonall['volume']['value']).to be_a_kind_of(Integer)
+  end
+
+  it 'fermentation unit should be a string' do
+    expect(@jsonall['method']['fermentation']['temp']['unit']).to be_a_kind_of(String)
+  end
+
+  it 'fermentation value should be an integer' do
+    expect(@jsonall['method']['fermentation']['temp']['value']).to be_a_kind_of(Integer)
+  end
+
+  it 'Twist should be a String or Null' do
+    expect(@jsonall['method']['twist'].class).to eq(NilClass || String)
   end
 
 end
