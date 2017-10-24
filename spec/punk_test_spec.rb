@@ -36,6 +36,14 @@ describe 'Punk by ID tests' do
     expect(@jsonid["id"]).to be_a_kind_of(Integer)
   end
 
+  it 'The name should be buzz' do
+   expect(@jsonid['name']).to eq('Buzz')
+  end
+
+  it 'abv should have a float value of 4.5' do
+    expect(@jsonid['abv']).to eq(4.5)
+  end
+
 end
 
 describe 'All punk api' do
@@ -51,8 +59,8 @@ describe 'All punk api' do
     expect(@jsonall["id"]).to be_a_kind_of(Integer)
   end
 
-  it "should have" do
-    puts @jsonall.size
+  it "should have 21 keys" do
+    expect(@jsonall.size).to eq(21)
   end
 
   it 'description should be a string' do
