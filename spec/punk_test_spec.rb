@@ -132,5 +132,4 @@ describe "Punk by query string" do
     expect(@jsonquery['description']).to be_a_kind_of(String)
   end
 
-
 end

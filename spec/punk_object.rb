@@ -9,7 +9,6 @@ class PunkService
       @uri = ""
     end
 
-
     base_uri 'api.punkapi.com/v2/'
 
     def random_punk_call
@@ -21,7 +20,6 @@ class PunkService
       id = JSON.parse(self.class.get("/beers/#{id}").body)
       id[0]
     end
-
 
     def all_punk_service
         all = JSON.parse(self.class.get("/beers").body)
