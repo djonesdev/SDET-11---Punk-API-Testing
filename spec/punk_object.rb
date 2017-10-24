@@ -1,9 +1,9 @@
 require 'httparty'
 require 'json'
 
-  class PunkService
+class PunkService
   include HTTParty
-    attr_accessor :uri
+  attr_accessor :uri
 
     def initialize
       @uri = ""
@@ -23,9 +23,8 @@ require 'json'
     end
 
 
-    def all_punk_service(all)
+    def all_punk_service
         all = JSON.parse(self.class.get("/beers").body)
-        all[0]
     end
 
     def option_punk_call(opt = {})
@@ -45,9 +44,3 @@ require 'json'
       end
     end
 end
-
-kc = PunkService.new
-
-kc.option_punk_call({"yeast" => "american", "abv_gt" => 4})
-
-puts kc.uri
